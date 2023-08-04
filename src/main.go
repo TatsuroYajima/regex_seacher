@@ -19,43 +19,57 @@ func main() {
 	}
 
 	for _, filePath := range filePaths {
-		file, err := os.Open(filePath)
-		if err != nil {
-			fmt.Println("Openメソッドでエラーが発生しました：", err)
-			continue
+		processFile(filePath)
+	}
+}
+
+func processFile(filePath string) {
+	// 1. ファイルを開く
+	file, err := os.Open(filePath)
+	if err != nil {
+		fmt.Println("Openメソッドでエラーが発生しました：", err)
+		return
+	}
+	defer file.Close()
+
+	// 2. 正規表現パターンを定義
+	pattern := `[0-9]+[A-Za-z]+`
+	regExp := regexp.MustCompile(pattern)
+
+	// 3. ファイルの内容をすべて読み込む
+	fileContents, err := readAllLines(file)
+	if err != nil {
+		fmt.Println("ファイルの読み込み中にエラーが発生しました：", err)
+		return
+	}
+
+	// 4. ファイルの内容に、正規表現にマッチする文字列が存在するかをチェック
+	matchedStrings := findMatchedStrings(regExp, fileContents)
+
+	// 5. マッチする文字列が存在しているかどうかを出力
+	printResult(filePath, matchedStrings)
+}
+
+func findMatchedStrings(regExp *regexp.Regexp, fileContents []string) []string {
+	var matchedStrings []string
+	for _, content := range fileContents {
+		if regExp.MatchString(content) {
+			matchedStrings = append(matchedStrings, content)
 		}
-		defer file.Close()
+	}
+	return matchedStrings
+}
 
-		pattern := `[0-9]+[A-Za-z]+`
-		regExp := regexp.MustCompile(pattern)
-
-		// ファイルの内容をすべて読み込む
-		fileContents, err := readAllLines(file)
-		if err != nil {
-			fmt.Println("ファイルの読み込み中にエラーが発生しました：", err)
-			continue
+// 正規表現にマッチしたかどうかの結果を出力
+func printResult(filePath string, matchedStrings []string) {
+	if len(matchedStrings) > 0 {
+		fmt.Println("対象文字列が存在します:", filePath)
+		for i, str := range matchedStrings {
+			fmt.Printf("  L%d: %s\n", i+1, str)
 		}
-
-		var matchedStrings []error
-
-		// 正規表現にマッチする行を探す
-		matched := false
-		for i, content := range fileContents {
-			if regExp.MatchString(content) {
-				matched = true
-				matchedStrings = append(matchedStrings, fmt.Errorf("  L%d: %s", i+1, content))
-			}
-		}
-
-		if matched {
-			fmt.Println("対象文字列が存在します:", filePath)
-			for _, error := range matchedStrings {
-				fmt.Println(error)
-			}
-			fmt.Println()
-		} else {
-			fmt.Printf("対象文字列は存在しません: %s\n", filePath)
-		}
+		fmt.Println()
+	} else {
+		fmt.Printf("対象文字列は存在しません: %s\n", filePath)
 	}
 }
 
