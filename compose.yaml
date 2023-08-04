@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  regex_searcher:
+    image: golang:1.16
+    container_name: regex_searcher
+    volumes:
+      - ./src:/src
+    working_dir: /src
+    # コンテナを起動させておくための仮コマンド。tailでなくてもよい
+    command: tail -f /dev/null
