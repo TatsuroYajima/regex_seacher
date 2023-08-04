@@ -1,5 +1,7 @@
 ## Regex Searcher
 
+![regex_searcher_logo](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/cbd14194-c790-4ffe-9401-48e418fc3bfd)
+
 このプログラムは、対象のディレクトリ内に特定のパターンが存在するかどうかを判定するためのものです。
 
 対象のディレクトリとは、`target_files`ディレクトリです。
@@ -8,6 +10,8 @@
 （詳細は後述します）
 
 ## デモ
+
+![Aug-04-2023 14-42-10](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/2c49f823-60b5-4d68-89a2-864fc1343021)
 
 ## 使い方
 
@@ -37,7 +41,7 @@ $ docker compose exec -it regex_searcher go run main.go
 
 以下のように動作すれば成功です。
 
-`TODO:` ここにGIFのリンクを貼る。
+![Aug-04-2023 14-42-10](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/2c49f823-60b5-4d68-89a2-864fc1343021)
 
 失敗する場合は、エラーメッセージを見ながら対処してください。
 
