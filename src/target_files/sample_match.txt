@@ -1,0 +1,9 @@
+123abc
+456
+def
+
+select * from a_table;
+
+select 123 from a_table;
+
+select * from a_table where id = 123union all select * from b_table;
