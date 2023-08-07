@@ -8,9 +8,12 @@ import (
 	"regexp"
 )
 
-func main() {
-	targetDir := "target_files"
+const (
+	targetDir = "target_files"
+	outputFilePath = "output/result.txt"
+)
 
+func main() {
 	// ディレクトリ内のファイルパスを取得
 	filePaths, err := getFilePaths(targetDir)
 	if err != nil {
@@ -18,7 +21,7 @@ func main() {
 		return
 	}
 
-	outputFilePath := "output/result.txt" // 出力ファイルのパス
+	// 結果ファイルを作成
 	outputFile, err := os.Create(outputFilePath)
 	if err != nil {
 		fmt.Println("出力ファイルを作成できませんでした：", err)
@@ -26,9 +29,12 @@ func main() {
 	}
 	defer outputFile.Close()
 
+	// 中身が正規表現にマッチするかをチェックし、結果をファイルへ出力
 	for _, filePath := range filePaths {
 		outputRegExpMatching(filePath, outputFile)
 	}
+
+	fmt.Print(`処理が終了しました。` + outputFilePath + `を参照してください。`)
 }
 
 func outputRegExpMatching(filePath string, outputFile *os.File) {
@@ -102,7 +108,6 @@ func getFilePaths(dirPath string) ([]string, error) {
 		if err != nil {
 			return err
 		}
-		// ファイルの場合のみパスを追加
 		if !info.IsDir() {
 			filePaths = append(filePaths, path)
 		}
