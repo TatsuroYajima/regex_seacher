@@ -1,2 +1,3 @@
 !/src/target_files/sample_*
 /src/target_files/
+/src/output/*
