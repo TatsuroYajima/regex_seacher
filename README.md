@@ -35,6 +35,7 @@ $ docker compose up -d
 
 （試しに動かす場合は手順3はスキップ可能です）
 
+![image](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/864adfbe-6c21-43ea-9128-2673f2d7ab79)
 
 ### 手順4. 処理実行
 
@@ -86,3 +87,20 @@ $ docker compose exec -it regex_searcher go run main.go
 |`123 abc`| マッチしません|
 |`'123abc'`| マッチしません|
 |`select * from a where id = '123union all'`| マッチしません|
+
+## テスト実行手順
+
+テストを実行するには、以下のコマンドを実行します。
+
+```sh
+$ docker compose exec -it regex_searcher go test
+```
+
+テストが通ると、以下のような表示になります。
+
+![image](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/3f54cdd6-1adf-46ff-ac68-c45953729de4)
+
+テストが失敗すると、以下のような表示になります。
+
+![image](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/21213734-bf8a-4788-bf07-f5a4876bd897)
+
