@@ -76,7 +76,7 @@ $ docker compose exec -it regex_searcher go run main.go
 
 ファイル内に`数値 + 非数値文字列`が存在する場合は、正規表現にマッチします。
 
-※ ただし、シングルクォーテーション(`'`)に囲まれている文字列はマッチしません。
+ただし、間にスペースが入っている場合（例：`123 abc`）はマッチしません。
 
 |文字列|結果|
 |---|---|
@@ -85,8 +85,6 @@ $ docker compose exec -it regex_searcher go run main.go
 |`123`| マッチしません|
 |`abc`| マッチしません|
 |`123 abc`| マッチしません|
-|`'123abc'`| マッチしません|
-|`select * from a where id = '123union all'`| マッチしません|
 
 ## テスト実行手順
 
