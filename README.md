@@ -9,7 +9,7 @@
 
 ## デモ
 
-![Aug-04-2023 14-42-10](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/2c49f823-60b5-4d68-89a2-864fc1343021)
+![Aug-07-2023 17-45-09](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/f3830af2-b4d8-4787-95ca-8fc259183ace)
 
 ## 使い方
 
@@ -31,7 +31,7 @@ $ docker compose up -d
 
 ### 手順3. 処理対象ファイルを配置
 
-特定のパターンが存在するか調べたいファイルを、`target_files`ディレクトリに格納します。
+特定のパターンが存在するか調べたいファイルを、`src/target_files`ディレクトリに格納します。
 
 （試しに動かす場合は手順3はスキップ可能です）
 
@@ -47,28 +47,28 @@ $ docker compose exec -it regex_searcher go run main.go
 
 以下のように動作すれば成功です。
 
-![Aug-04-2023 14-42-10](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/2c49f823-60b5-4d68-89a2-864fc1343021)
+![Aug-07-2023 17-45-09](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/f3830af2-b4d8-4787-95ca-8fc259183ace)
 
 失敗する場合は、エラーメッセージを見ながら対処してください。
 
 #### 対象文字列が存在する場合
 
-以下のように表示されます。
+結果ファイルに、以下のように出力されます。
 
 ```
 対象文字列が存在します: (ファイルパス)
   (行数): (対象文字列が存在する箇所の記述)
 ```
 
-例えば、以下のように表示されます。
+例えば、以下のように出力されます。
 ```
-対象文字列が存在します: target_files/sample_match.txt
+対象文字列が存在します: src/target_files/sample_match.txt
   L1: 123abc`
 ```
 
 #### 対象文字列が存在しない場合
 
-以下のように表示されます。
+結果ファイルに、以下のように出力されます。
 
 `対象文字列は存在しません: (ファイルパス)`
 
