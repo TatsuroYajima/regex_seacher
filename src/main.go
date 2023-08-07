@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 )
 
 func main() {
@@ -52,6 +53,11 @@ func findMatchedStrings(fileContents []string) []string {
 	var matchedStrings []string
 
 	for _, content := range fileContents {
+		// "serial_code" = ('1test1') のような文字列はスキップ
+		if strings.Contains(content, `'`) {
+			continue
+		}
+
 		if regExp.MatchString(content) {
 			matchedStrings = append(matchedStrings, content)
 		}

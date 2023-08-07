@@ -27,5 +27,14 @@ func Test_valid_sql_should_not_be_matched(t *testing.T) {
 	if !reflect.DeepEqual(result, expected) {
 		t.Errorf("got %v want %v", result, expected)
 	}
+func Test_string_wrapped_in_single_quotes_should_not_be_matched(t *testing.T) {
+	targetString := []string{"\"serial_code\" = ('test0196a740c98318ee084')"}
 
+	result := findMatchedString(targetString)
+	
+	var expected []string
+
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("got %v want %v", result, expected)
+	}
 }
