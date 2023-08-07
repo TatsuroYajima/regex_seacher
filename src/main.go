@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"strings"
 )
 
 func main() {
@@ -53,11 +52,6 @@ func findMatchedString(fileContents []string) []string {
 	var matchedStrings []string
 
 	for _, content := range fileContents {
-		// "serial_code" = ('1test1') のような文字列はスキップ
-		if strings.Contains(content, `'`) {
-			continue
-		}
-
 		if regExp.MatchString(content) {
 			matchedStrings = append(matchedStrings, content)
 		}
@@ -82,7 +76,12 @@ func printResult(filePath string, matchedStrings []string) {
 // ファイルの内容をすべて読み込んで行ごとの文字列のスライスを返す
 func readAllLines(file *os.File) ([]string, error) {
 	var lines []string
+	 // 35MB 本番のファイルサイズと同じくらい
+	buf := make([]byte, 35 * 1024 * 1024)
+
 	scanner := bufio.NewScanner(file)
+	scanner.Buffer(buf, bufio.MaxScanTokenSize)
+
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
