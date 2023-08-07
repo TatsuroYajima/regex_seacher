@@ -2,23 +2,17 @@ package main
 
 import (
 	"reflect"
-	"regexp"
 	"testing"
 )
 
-func TestMain(t *testing.T) {
-	pattern := `[0-9]+[A-Za-z]+`
-	regExp := regexp.MustCompile(pattern)
+func Test_123abc_should_be_matched(t *testing.T) {
+	targetStrings := []string{"123abc"}
 
-	var lines []string
-
-	lines = append(lines, "123abc")
-
-	result := findMatchedStrings(regExp,lines)
+	result := findMatchedStrings(targetStrings)
 
 	expected := []string{"123abc"}
-	
-	if !reflect.DeepEqual(result, expected) { 
+
+	if !reflect.DeepEqual(result, expected) {
 		t.Errorf("got %v want %v", result, expected)
-    }
+	}
 }

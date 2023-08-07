@@ -19,44 +19,44 @@ func main() {
 	}
 
 	for _, filePath := range filePaths {
-		processFile(filePath)
+		outputRegExpMatching(filePath)
 	}
 }
 
-func processFile(filePath string) {
+func outputRegExpMatching(filePath string) {
 	// 1. ファイルを開く
 	file, err := os.Open(filePath)
 	if err != nil {
-		fmt.Println("Openメソッドでエラーが発生しました：", err)
+		fmt.Println("ファイルを開く処理中にエラーが発生しました：", err)
 		return
 	}
 	defer file.Close()
 
-	// 2. 正規表現パターンを定義
-	pattern := `[0-9]+[A-Za-z]+`
-	regExp := regexp.MustCompile(pattern)
-
-	// 3. ファイルの内容をすべて読み込む
+	// 2. ファイルの内容をすべて読み込む
 	fileContents, err := readAllLines(file)
 	if err != nil {
 		fmt.Println("ファイルの読み込み中にエラーが発生しました：", err)
 		return
 	}
 
-	// 4. ファイルの内容に、正規表現にマッチする文字列が存在するかをチェック
-	matchedStrings := findMatchedStrings(regExp, fileContents)
+	// 3. ファイルの内容に、正規表現にマッチする文字列が存在するかをチェック
+	matchedStrings := findMatchedStrings(fileContents)
 
-	// 5. マッチする文字列が存在しているかどうかを出力
+	// 4. マッチする文字列が存在しているかどうかを出力
 	printResult(filePath, matchedStrings)
 }
 
-func findMatchedStrings(regExp *regexp.Regexp, fileContents []string) []string {
+func findMatchedStrings(fileContents []string) []string {
+	pattern := `[0-9]+[A-Za-z]+`
+	regExp := regexp.MustCompile(pattern)
 	var matchedStrings []string
+
 	for _, content := range fileContents {
 		if regExp.MatchString(content) {
 			matchedStrings = append(matchedStrings, content)
 		}
 	}
+	
 	return matchedStrings
 }
 
