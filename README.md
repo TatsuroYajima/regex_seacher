@@ -86,7 +86,7 @@ $ docker compose exec -it regex_searcher go run main.go
 |`abc`| マッチしません|
 |`123 abc`| マッチしません|
 
-## テスト実行手順
+## テスト
 
 テストを実行するには、以下のコマンドを実行します。
 
@@ -94,11 +94,10 @@ $ docker compose exec -it regex_searcher go run main.go
 $ docker compose exec -it regex_searcher go test
 ```
 
-テストが通ると、以下のような表示になります。
+テストに成功すると、以下のような表示になります。
 
 ![image](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/3f54cdd6-1adf-46ff-ac68-c45953729de4)
 
-テストが失敗すると、以下のような表示になります。
+テストに失敗すると、以下のような表示になります。
 
 ![image](https://github.com/TatsuroYajima/regex_seacher/assets/97079648/21213734-bf8a-4788-bf07-f5a4876bd897)
-
