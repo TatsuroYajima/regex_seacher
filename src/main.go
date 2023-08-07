@@ -41,13 +41,13 @@ func outputRegExpMatching(filePath string) {
 	}
 
 	// 3. ファイルの内容に、正規表現にマッチする文字列が存在するかをチェック
-	matchedStrings := findMatchedStrings(fileContents)
+	matchedStrings := findMatchedString(fileContents)
 
 	// 4. マッチする文字列が存在しているかどうかを出力
 	printResult(filePath, matchedStrings)
 }
 
-func findMatchedStrings(fileContents []string) []string {
+func findMatchedString(fileContents []string) []string {
 	pattern := `[0-9]+[A-Za-z]+`
 	regExp := regexp.MustCompile(pattern)
 	var matchedStrings []string
@@ -62,7 +62,7 @@ func findMatchedStrings(fileContents []string) []string {
 			matchedStrings = append(matchedStrings, content)
 		}
 	}
-	
+
 	return matchedStrings
 }
 
