@@ -5,7 +5,7 @@
 このプログラムは、`target_files`ディレクトリ内に特定のパターンが存在するかどうかを判定できます。
 
 特定のパターンとは、`数値 + 非数値文字列`です。
-（詳細は [マッチする文字列](https://github.com/TatsuroYajima/regex_seacher/tree/implement-main-process#%E3%83%9E%E3%83%83%E3%83%81%E3%81%99%E3%82%8B%E6%96%87%E5%AD%97%E5%88%97)セクションを参照してください）
+（詳細は [マッチする文字列](https://github.com/TatsuroYajima/regex_seacher#%E3%83%9E%E3%83%83%E3%83%81%E3%81%99%E3%82%8B%E6%96%87%E5%AD%97%E5%88%97)セクションを参照してください）
 
 ## デモ
 
